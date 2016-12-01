@@ -45,9 +45,66 @@ spring配置文件中加入：
                 @CacheEvict(value = "accountCache", key = "'account.id.' + #id"),
                 @CacheEvict(value = "accountCache", key = "'account.all_account_email'")
         })（多个同时过期）</li>
+    <li>@CacheEvict(value = "user", key = "#user.id", beforeInvocation = false, condition = "#result.username ne 'zhang'")）（@CacheEvict， beforeInvocation=false表示在方法执行之后调用（#result能拿到返回值了）；且判断condition，如果返回true，则移除缓存；）</li>
 </ul>
 
-
+<h4>提供的SpEL上下文数据：</h4>
+<table>
+    <tr>
+        <th>名字</th>
+        <th>位置</th>
+        <th>描述</th>
+        <th>示例</th>
+    </tr>
+    <tr>
+        <td>methodName</td>
+        <td>root对象</td>
+        <td>当前被调用的方法名</td>
+        <td>#root.methodName</td>
+    </tr>
+    <tr>
+        <td>method</td>
+        <td>root对象</td>
+        <td>当前被调用的方法名</td>
+        <td>#root.method.name</td>
+    </tr>
+    <tr>
+        <td>target</td>
+        <td>root对象</td>
+        <td>当前被调用的目标对象</td>
+        <td>#root.target</td>
+    </tr>
+    <tr>
+        <td>targetClass</td>
+        <td>root对象</td>
+        <td>当前被调用的目标对象类</td>
+        <td>#root.targetClass</td>
+    </tr>
+    <tr>
+        <td>args</td>
+        <td>root对象</td>
+        <td>当前被调用的方法的参数列表</td>
+        <td>#root.args[0]</td>
+    </tr>
+    <tr>
+        <td>caches</td>
+        <td>root对象</td>
+        <td>当前方法调用使用的缓存列表（如@Cacheable(value={"cache1", "cache2"})），则有两个cache</td>
+        <td>#root.caches[0].name</td>
+    </tr>
+    <tr>
+        <td>argument name</td>
+        <td>执行上下文</td>
+        <td>当前被调用的方法的参数，如findById(Long id)，我们可以通过#id拿到参数</td>
+        <td>#user.id</td>
+    </tr>
+    <tr>
+        <td>result</td>
+        <td>root对象</td>
+        <td>方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’，'cache evict'的beforeInvocation=false）</td>
+        <td>#result</td>
+    </tr>
+</table>
 
 
 
