@@ -27,9 +27,9 @@ spring配置文件中加入：
 @Cacheable
 <ul>
     <li>@Cacheable 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</li>
-    <li>@Cacheable(value = "accountCache" ,key="#accountName.concat(#password)") （多参数链接）</li>
+    <li>@Cacheable(value = "accountCache" ,key = "#accountName.concat(#password)") （多参数链接）</li>
     <li>@Cacheable(value = "accountCache", key = "'xxxxxx_' + #id")（一个参数）</li>
-    <li>@Cacheable(value = "accountCache",key="#account.name")（对象属性）
+    <li>@Cacheable(value = "accountCache", key = "#account.name")（对象属性）
 </ul>
 @CachePut
 <ul>
