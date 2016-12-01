@@ -23,34 +23,28 @@ spring配置文件中加入：
     <li>group.expire为对应分组缓存过期时间</li>
 </ul>
 
-
-@Cacheable、@CachePut、@CacheEvict 注释介绍
+<h4>@Cacheable、@CachePut、@CacheEvict 注释介绍</h4>
+@Cacheable
 <ul>
-    <li>
-        <ul>
-            <li>@Cacheable 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</li>
-            <li>1：@Cacheable(value = "accountCache" ,key="#accountName.concat(#password)") （多参数链接）</li>
-            <li>2：@Cacheable(value = "accountCache", key = "'xxxxxx_' + #id")（一个参数）</li>
-            <li>3：@Cacheable(value = "accountCache",key="#account.name")（对象属性）
-        </ul>
-    </li>
-    <li>
-        <ul>
-            <li>@CachePut 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存，和 @Cacheable 不同的是，它每次都会触发真实方法的调用，同时方法的返回值也被记录到缓存中。</li>
-            <li>@CachePut(value = "accountCache", key = "#account.name")（对象属性）</li>
-        </ul>
-    </li>
-    <li>
-        <ul>
-            <li>@CachEvict 主要针对方法配置，能够根据一定的条件对缓存进行清空</li>
-            <li>@CachEvict(value = "accountCache", key = "#account.name")（对象属性）</li>
-            <li>@Caching(evict = {
-                        @CacheEvict(value = "accountCache", key = "'account.all_ids'"),
-                        @CacheEvict(value = "accountCache", key = "'account.id.' + #id"),
-                        @CacheEvict(value = "accountCache", key = "'account.all_account_email'")
-                })（多个同时过期）</li>
-        </ul>
-    </li>
+    <li>@Cacheable 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</li>
+    <li>@Cacheable(value = "accountCache" ,key="#accountName.concat(#password)") （多参数链接）</li>
+    <li>@Cacheable(value = "accountCache", key = "'xxxxxx_' + #id")（一个参数）</li>
+    <li>@Cacheable(value = "accountCache",key="#account.name")（对象属性）
+</ul>
+@CachePut
+<ul>
+    <li>@CachePut 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存，和 @Cacheable 不同的是，它每次都会触发真实方法的调用，同时方法的返回值也被记录到缓存中。</li>
+    <li>@CachePut(value = "accountCache", key = "#account.name")（对象属性）</li>
+</ul>
+@CacheEvict
+<ul>
+    <li>@CachEvict 主要针对方法配置，能够根据一定的条件对缓存进行清空</li>
+    <li>@CachEvict(value = "accountCache", key = "#account.name")（对象属性）</li>
+    <li>@Caching(evict = {
+                @CacheEvict(value = "accountCache", key = "'account.all_ids'"),
+                @CacheEvict(value = "accountCache", key = "'account.id.' + #id"),
+                @CacheEvict(value = "accountCache", key = "'account.all_account_email'")
+        })（多个同时过期）</li>
 </ul>
 
 
