@@ -52,7 +52,7 @@ spring配置文件中加入：
 <table>
     <tr>
         <th>名字</th>
-        <th>位置</th>
+        <th style="min-width: 120px;">位置</th>
         <th>描述</th>
         <th>示例</th>
     </tr>
@@ -100,7 +100,7 @@ spring配置文件中加入：
     </tr>
     <tr>
         <td>result</td>
-        <td>root对象</td>
+        <td>执行上下文</td>
         <td>方法执行后的返回值（仅当方法执行之后的判断有效，如‘unless’，'cache evict'的beforeInvocation=false）</td>
         <td>#result</td>
     </tr>
