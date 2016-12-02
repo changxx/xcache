@@ -1,5 +1,5 @@
 <h4>xcache说明：</h4>
-spring-cache扩展，支持不同group过期时间不同
+spring-cache扩展（http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html），支持不同group过期时间不同
 
 <h4>使用说明</h4>
 spring配置文件中加入：
@@ -12,7 +12,6 @@ spring配置文件中加入：
         <property name="xCache" ref="xCacheClient"/>
     </bean>
 
-
 <h4>待实现：</h4>
 缓存穿透，缓存雪崩预防
 
@@ -23,11 +22,11 @@ spring配置文件中加入：
     <li>group.expire为对应分组缓存过期时间</li>
 </ul>
 
-<h4>@Cacheable、@CachePut、@CacheEvict 注释介绍</h4>
+<h4>@Cacheable、@CachePut、@CacheEvict、@Caching 注释介绍</h4>
 @Cacheable
 <ul>
     <li>@Cacheable 主要针对方法配置，能够根据方法的请求参数对其结果进行缓存</li>
-    <li>@Cacheable(value = "accountCache" ,key = "#accountName.concat(#password)") （多参数链接）</li>
+    <li>@Cacheable(value = "accountCache", key = "#accountName.concat(#password)") （多参数链接）</li>
     <li>@Cacheable(value = "accountCache", key = "'xxxxxx_' + #id")（一个参数）</li>
     <li>@Cacheable(value = "accountCache", key = "#account.name")（对象属性）
 </ul>
@@ -40,12 +39,22 @@ spring配置文件中加入：
 <ul>
     <li>@CachEvict 主要针对方法配置，能够根据一定的条件对缓存进行清空</li>
     <li>@CachEvict(value = "accountCache", key = "#account.name")（对象属性）</li>
-    <li>@Caching(evict = {
+    <li>
+        ### @Caching(evict = {
                 @CacheEvict(value = "accountCache", key = "'account.all_ids'"),
                 @CacheEvict(value = "accountCache", key = "'account.id.' + #id"),
                 @CacheEvict(value = "accountCache", key = "'account.all_account_email'")
-        })（多个同时过期）</li>
+        })（多个同时过期）
+    </li>
     <li>@CacheEvict(value = "user", key = "#user.id", beforeInvocation = false, condition = "#result.username ne 'zhang'")）（@CacheEvict， beforeInvocation=false表示在方法执行之后调用（#result能拿到返回值了）；且判断condition，如果返回true，则移除缓存；）</li>
+</ul>
+@Caching
+<ul>
+    <li>@Caching(cacheable = {
+                    @Cacheable(value = XCacheGroup.ELEMENT, key = "T(com.netease.cache.CacheKeyUtil).TEST"),
+                    @Cacheable(value = XCacheGroup.ELEMENT, key = "T(com.netease.cache.CacheKeyUtil).TEST2")
+            })多个缓存
+    </li>
 </ul>
 
 <h4>提供的SpEL上下文数据：</h4>
