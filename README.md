@@ -14,6 +14,7 @@ spring配置文件中加入：
 
 <h4>待实现：</h4>
 缓存穿透，缓存雪崩预防
+org.springframework.cache.interceptor.CacheInterceptor
 
 <strong>xcache.properties配置说明</strong>
 <ul>
