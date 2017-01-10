@@ -14,7 +14,22 @@ spring配置文件中加入：
 
 <h4>待实现：</h4>
 缓存穿透，缓存雪崩预防
-org.springframework.cache.interceptor.CacheInterceptor
+org.springframework.cache.interceptor.CacheInterceptor->Invoke the method if don't have a cache hit
+org.springframework.cache.interceptor.AbstractCacheInvoker
+org.springframework.cache.interceptor。AbstractFallbackCacheOperationSource.getCacheOperations->获取key
+
+    防并发使用：
+    <?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:xcache="http://www.changxx.netease.com/schema/xcache"
+           xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                http://www.changxx.netease.com/schema/xcache
+               http://www.changxx.netease.com/schema/xcache/spring-xcache.xsd">
 
 <strong>xcache.properties配置说明</strong>
 <ul>

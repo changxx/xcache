@@ -22,4 +22,13 @@ public interface XCacheExt {
      */
     void setXCacheConf(XCacheConf xCacheConf);
 
+    /**
+     * 防并发
+     *
+     * @param key    key
+     * @param second 过期秒
+     * @return 琐成功
+     */
+    boolean setnx(Object key, long second);
+
 }
