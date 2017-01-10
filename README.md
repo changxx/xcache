@@ -45,6 +45,7 @@ org.springframework.cache.interceptor。AbstractFallbackCacheOperationSource.get
     <li>@Cacheable(value = "accountCache", key = "#accountName.concat(#password)") （多参数链接）</li>
     <li>@Cacheable(value = "accountCache", key = "'xxxxxx_' + #id")（一个参数）</li>
     <li>@Cacheable(value = "accountCache", key = "#account.name")（对象属性）
+    <li>@Cacheable(value="cacheName", key"T(String).valueOf(#name).concat('-').concat(#password)) 组合形式</li>
 </ul>
 @CachePut
 <ul>
