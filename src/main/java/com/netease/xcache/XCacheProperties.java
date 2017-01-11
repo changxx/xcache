@@ -41,7 +41,7 @@ public class XCacheProperties {
                     XCacheConf xCacheConf = new XCacheConf();
                     xCacheConf.setGroup(groupName);
                     for (Field field : xCacheConfField) {
-                        String propertyVal = PropertiesUtils.getFromProperties(groupName + "." + field.getName());
+                        String propertyVal = PropertiesUtils.getFromProperties("group." + groupName + "." + field.getName());
                         if (propertyVal == null) {
                             continue;
                         }
